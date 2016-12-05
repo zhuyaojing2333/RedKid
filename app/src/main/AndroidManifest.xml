@@ -81,7 +81,8 @@
             android:screenOrientation="behind" />
         <activity android:name="com.bw.hhzmy.pay.PayDemoActivity" />
         <activity android:name=".BaiduMapActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

@@ -38,44 +38,110 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_gravity="center"
                 android:text="账号"
-                android:textSize="20sp" />
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
 
-            <EditText
+            <com.bw.hhzmy.view.ClearEditText
+                android:id="@+id/username"
                 android:layout_width="0dp"
+                android:layout_weight="8"
                 android:layout_height="wrap_content"
-                android:hint="手机号/邮箱/用户名/门店会员卡"
-                android:layout_weight="5" />
+                android:layout_gravity="center"
+                android:hint="手机号/只能输入数字"
+                android:inputType="number"
+                android:drawableRight="@drawable/delete_selector"
+                android:layout_marginRight="10dip"
+                android:singleLine="true"
+                android:layout_marginLeft="10dip"
+                />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            >
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center"
                 android:text="密码"
-                android:textSize="20sp" />
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
-            <EditText
+            <com.bw.hhzmy.view.ClearEditText
+                android:id="@+id/password"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="10dip"
+                android:hint="请输入6-20位易购密码"
+                android:drawableRight="@drawable/delete_selector"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:id="@+id/showhide_icon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="请输入6-20位易购密码"
-                android:layout_weight="5" />
+                android:button="@null"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/showpwdselector" />
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="验证码"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <com.bw.hhzmy.view.ClearEditText
+            android:id="@+id/yanzhengcode"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="请输入右侧验证码"
+            android:drawableRight="@drawable/delete_selector"
+            android:singleLine="true"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/yanzheng_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher" />
     </LinearLayout>
 
     <Button
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -89,6 +155,7 @@
         android:text="忘记密码" />
 
     <Button
+        android:id="@+id/regist_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -101,7 +168,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="180dp">
+        android:layout_marginTop="150dp">
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
