@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="验证手机号"
-            android:textSize="30dp" />
+            android:textSize="25sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -55,6 +55,7 @@
             android:layout_gravity="center"
             android:hint="手机号/只能输入数字"
             android:inputType="number"
+            android:maxLength="11"
             android:drawableRight="@drawable/delete_selector"
             android:layout_marginRight="10dip"
             android:singleLine="true"

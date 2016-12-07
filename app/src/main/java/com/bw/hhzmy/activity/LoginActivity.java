@@ -19,7 +19,18 @@ import android.widget.Toast;
 import com.bw.hhzmy.util.CodeUtils;
 import com.bw.hhzmy.util.Validator;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    @Bind(R.id.qq_login)
+    ImageView qqLogin;
+    @Bind(R.id.weixin_login)
+    ImageView weixinLogin;
+    @Bind(R.id.yifubao_login)
+    ImageView yifubaoLogin;
+    @Bind(R.id.weibo_login)
+    ImageView weiboLogin;
     private ImageView fan;
     private ImageView icon;
     private EditText code;
@@ -37,6 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
         initView();
 
@@ -105,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        CheckBox.OnCheckedChangeListener listener = new CheckBox.OnCheckedChangeListener(){
+        CheckBox.OnCheckedChangeListener listener = new CheckBox.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -135,6 +147,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         icon.setOnClickListener(this);
         login_btn.setOnClickListener(this);
         regist_btn.setOnClickListener(this);
+        qqLogin.setOnClickListener(this);
+        weixinLogin.setOnClickListener(this);
+        weiboLogin.setOnClickListener(this);
     }
 
     @Override
@@ -155,31 +170,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.login_btn:
                 unameStr = uname.getText().toString();
-                String unameStr2 = unameStr.replace(" ","");
+                String unameStr2 = unameStr.replace(" ", "");
                 pwdStr = pwd.getText().toString();
                 codeStr = code.getText().toString().trim();
 
-                if(Validator.isMobile(unameStr2)){
-                    if(Validator.isPassword(pwdStr)){
+                if (Validator.isMobile(unameStr2)) {
+                    if (Validator.isPassword(pwdStr)) {
                         String code = codeUtils.getCode();
                         if (code.equalsIgnoreCase(codeStr)) {
                             Toast.makeText(this, "验证码正确", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(this, "验证码错误", Toast.LENGTH_LONG).show();
                         }
-                    }else if(pwdStr.length() < 6 || pwdStr.length() > 20){
+                    } else if (pwdStr.length() < 6 || pwdStr.length() > 20) {
                         Toast.makeText(this, "请输入6-20位密码", Toast.LENGTH_LONG).show();
                         return;
-                    }else if(null == pwdStr || TextUtils.isEmpty(pwdStr)){
+                    } else if (null == pwdStr || TextUtils.isEmpty(pwdStr)) {
                         Toast.makeText(this, "密码不能为空", Toast.LENGTH_LONG).show();
-                    }else{
+                    } else {
                         Toast.makeText(this, "密码错误，请重新输入", Toast.LENGTH_LONG).show();
                     }
-                }else if(null == unameStr2 || TextUtils.isEmpty(unameStr2)) {
+                } else if (null == unameStr2 || TextUtils.isEmpty(unameStr2)) {
                     Toast.makeText(this, "用户名不能为空", Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     Toast.makeText(this, "请输入正确的手机号码", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.qq_login:
+                Intent intent1 = new Intent(LoginActivity.this, QQActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.weixin_login:
+                Intent intent2 = new Intent(LoginActivity.this, WeiChatActivity.class);
+                startActivity(intent2);
+                break;
+            case R.id.weibo_login:
+                Intent intent3 = new Intent(LoginActivity.this, WeiBoActivity.class);
+                startActivity(intent3);
                 break;
         }
     }

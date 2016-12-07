@@ -26,7 +26,99 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="设置密码"
-            android:textSize="30dp" />
+            android:textSize="25sp" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/send_to"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="短信验证码已发送至-----"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="验证码"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <com.bw.hhzmy.view.ClearEditText
+            android:id="@+id/yanzheng_ma"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="请输入验证码"
+            android:drawableRight="@drawable/delete_selector"
+            android:singleLine="true"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:background="#CDCDCD"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/timer_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="180秒"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="设置密码"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <com.bw.hhzmy.view.ClearEditText
+            android:id="@+id/shezhi_password"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:hint="6-20位数字+字母或符号组成"
+            android:drawableRight="@drawable/delete_selector"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:id="@+id/sh_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/showpwdselector" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/commit_btn"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交"/>
 
 </LinearLayout>

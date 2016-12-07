@@ -72,6 +72,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         if(cbChoose.isChecked()){
                             Intent intent = new Intent(RegisterActivity.this, MessageActivity.class);
 
+                            intent.putExtra("phone_num",phoneStr);
+
                             startActivity(intent);
                         }else{
                             Toast.makeText(this, "请同意苏宁易购会员章程和易付宝协议后再进行下一步操作", Toast.LENGTH_LONG).show();
