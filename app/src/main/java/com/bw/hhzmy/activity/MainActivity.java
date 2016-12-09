@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 
+import com.umeng.analytics.MobclickAgent;
+
 public class MainActivity extends AppCompatActivity{
     private Intent intent;
 
@@ -15,6 +17,8 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         intent = new Intent(MainActivity.this, MenuActivity.class);
+
+        MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(MainActivity.this, "584aa506c89576147600036a", "PigGhost"));
 
         handler.sendEmptyMessageDelayed(0,3000);
 
@@ -30,5 +34,14 @@ public class MainActivity extends AppCompatActivity{
             finish();
         }
     };
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
 }

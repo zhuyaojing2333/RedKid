@@ -41,7 +41,6 @@ public class MenuActivity extends AppCompatActivity implements RadioGroup.OnChec
         setContentView(R.layout.activity_menu);
         ButterKnife.bind(this);
 
-
         initFragment();
         inittiaozhuan();
     }

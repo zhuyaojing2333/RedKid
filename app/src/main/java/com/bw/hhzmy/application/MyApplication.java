@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import com.bw.hhzmy.tools.ImageLoaderUtils;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
@@ -26,6 +28,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID+"=584a9744");
 
         Log.d(TAG, "[MyApplication] onCreate");
         initImageLoader();
