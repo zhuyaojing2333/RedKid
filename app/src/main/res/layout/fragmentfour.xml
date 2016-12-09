@@ -37,13 +37,25 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/myhead_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerVertical="true"
             android:layout_gravity="left|bottom"
             android:paddingBottom="20dp"
             android:paddingLeft="20dp"
             android:src="@mipmap/home_store_card_header_icon" />
+
+        <TextView
+            android:id="@+id/myname_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|bottom"
+            android:paddingLeft="100dp"
+            android:paddingBottom="40dp"
+            android:text="hahah"
+            android:textSize="18sp"/>
+
 
         <TextView
             android:layout_width="wrap_content"

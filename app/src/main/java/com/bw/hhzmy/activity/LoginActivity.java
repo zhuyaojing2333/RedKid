@@ -18,6 +18,12 @@ import android.widget.Toast;
 
 import com.bw.hhzmy.util.CodeUtils;
 import com.bw.hhzmy.util.Validator;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -197,18 +203,70 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.qq_login:
-                Intent intent1 = new Intent(LoginActivity.this, QQActivity.class);
-                startActivity(intent1);
+                UMShareAPI mShareAPI = UMShareAPI.get( LoginActivity.this );
+                mShareAPI.doOauthVerify(LoginActivity.this, SHARE_MEDIA.QQ, umAuthListener);
+
+                mShareAPI.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.QQ, umAuthListener);
                 break;
             case R.id.weixin_login:
-                Intent intent2 = new Intent(LoginActivity.this, WeiChatActivity.class);
-                startActivity(intent2);
+                UMShareAPI mShareAPI2 = UMShareAPI.get( LoginActivity.this );
+                mShareAPI2.doOauthVerify(LoginActivity.this, SHARE_MEDIA.WEIXIN, umAuthListener);
+
+                mShareAPI2.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.WEIXIN, umAuthListener);
                 break;
             case R.id.weibo_login:
-                Intent intent3 = new Intent(LoginActivity.this, WeiBoActivity.class);
-                startActivity(intent3);
+                UMShareAPI mShareAPI3 = UMShareAPI.get( LoginActivity.this );
+                mShareAPI3.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA, umAuthListener);
+
+                mShareAPI3.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.SINA, umAuthListener);
                 break;
         }
     }
 
+    private UMAuthListener umAuthListener = new UMAuthListener() {
+        @Override
+        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
+            Toast.makeText(getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+
+            Set<String> set = data.keySet();
+            for (String string : set) {
+
+                // 设置头像
+                if (string.equals("profile_image_url")) {
+                    String imgUrl = data.get(string);
+
+                    intent.putExtra("img_url", imgUrl);
+                }
+                // 设置昵称
+                if (string.equals("screen_name")) {
+                    String qqname = data.get(string);
+
+                    intent.putExtra("qq_name", qqname);
+                }
+            }
+
+
+            intent.putExtra("tag", 1);
+
+            startActivity(intent);
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+            Toast.makeText( getApplicationContext(), "Authorize fail", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            Toast.makeText( getApplicationContext(), "Authorize cancel", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
 }

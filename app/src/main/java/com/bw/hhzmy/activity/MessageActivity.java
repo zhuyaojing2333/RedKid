@@ -30,7 +30,7 @@ public class MessageActivity extends AppCompatActivity {
     private TextView time;
     private Timer timer = null;
     private TimerTask timerTask = null;
-    private int i =180;
+    private int i =20;
     private EditText ma;
 
     @Override
@@ -57,6 +57,8 @@ public class MessageActivity extends AppCompatActivity {
                     Intent intent = new Intent(MessageActivity.this, LoginActivity.class);
 
                     startActivity(intent);
+
+                    finish();
                 }else{
                     Toast.makeText(MessageActivity.this, "您的验证码有误", Toast.LENGTH_LONG).show();
                 }
@@ -145,12 +147,12 @@ public class MessageActivity extends AppCompatActivity {
                 time.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        runOnUiThread(new Runnable() {
+                        new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 getMessageNum();
                             }
-                        });
+                        }).start();
                     }
                 });
             }

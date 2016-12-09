@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bw.hhzmy.activity.BaiduMapActivity;
 import com.bw.hhzmy.activity.R;
 import com.bw.hhzmy.adapter.MySecondPageAdapter;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.utils.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +34,7 @@ public class GoodsFragmentOne extends Fragment {
     private LayoutInflater layoutInflater;
     private LinearLayout jump_baidumap;
     private TextView place_txt;
+    private ImageView share_icon;
 
     @Nullable
     @Override
@@ -39,7 +45,14 @@ public class GoodsFragmentOne extends Fragment {
         layout=(LinearLayout) view.findViewById(R.id.ll_circle);
         jump_baidumap = (LinearLayout) view.findViewById(R.id.jump_baidumap);
         place_txt = (TextView) view.findViewById(R.id.place_txt);
+        share_icon = (ImageView) view.findViewById(R.id.share_icon);
 
+        share_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ShareAction(getActivity()).setPlatform(SHARE_MEDIA.QQ).withText("猪妖精给大家问好了").setCallback(umShareListener).share();
+            }
+        });
 
         Intent intent = getActivity().getIntent();
 
@@ -61,7 +74,7 @@ public class GoodsFragmentOne extends Fragment {
 
                 startActivity(intent);
             }
-        });
+    });
 
 
 
@@ -69,6 +82,31 @@ public class GoodsFragmentOne extends Fragment {
 
         return view;
     }
+
+    private UMShareListener umShareListener = new UMShareListener() {
+
+
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            Log.d("plat","platform"+platform);
+
+            Toast.makeText(getActivity(), platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            Toast.makeText(getActivity(), platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if(t!=null){
+                Log.d("throw","throw:"+t.getMessage());
+            }
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            Toast.makeText(getActivity(),platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+        }
+    };
 
 
     private void initView() {

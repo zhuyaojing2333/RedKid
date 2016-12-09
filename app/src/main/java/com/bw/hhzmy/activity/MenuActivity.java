@@ -65,6 +65,16 @@ public class MenuActivity extends AppCompatActivity implements RadioGroup.OnChec
 //                beginTransaction.replace(R.id.fl, new FragmentThree()); //这里是指定跳转到指定的fragment
             }
         }
+
+        Intent intert2 = getIntent();
+        int id2 = intert2.getIntExtra("tag", -1);
+        if (id2 > 0) {
+            System.out.println("aaa" + id2);
+            if (id2 == 1) {
+//                beginTransaction.replace(R.id.fl, new FragmentThree()); //这里是指定跳转到指定的fragment
+                mybuyBtn.setChecked(true);
+            }
+        }
     }
 
     private void initFragment() {
