@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity{
 
         intent = new Intent(MainActivity.this, MenuActivity.class);
 
-        MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(MainActivity.this, "584aa506c89576147600036a", "PigGhost"));
+        MobclickAgent.startWithConfigure(new MobclickAgent.UMAnalyticsConfig(MainActivity.this, "58476e3b677baa54b9000407", "PigGhost"));
 
         handler.sendEmptyMessageDelayed(0,3000);
 
